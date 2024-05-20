@@ -1,1 +1,77 @@
+<?php
+
+// Lớp cơ bản Student
+class Student {
+    protected $name;
+    protected $id;
+    protected $grade;
+
+    public function __construct($name, $id, $grade) {
+        $this->name = $name;
+        $this->id = $id;
+        $this->grade = $grade;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getGrade() {
+        return $this->grade;
+    }
+
+    public function getDescription() {
+        return "Hoc sinh: $this->name, ma Sinh vien: $this->id, Lop: $this->grade";
+    }
+}
+
+// Lớp UndergraduateStudent kế thừa từ Student
+class UndergraduateStudent extends Student {
+    private $major;
+
+    public function __construct($name, $id, $grade, $major) {
+        parent::__construct($name, $id, $grade);
+        $this->major = $major;
+    }
+
+    public function getMajor() {
+        return $this->major;
+    }
+
+    public function getDescription() {
+        return parent::getDescription() . ", Mon: $this->major";
+    }
+}
+
+// Lớp GraduateStudent kế thừa từ Student
+class GraduateStudent extends Student {
+    private $thesisTitle;
+
+    public function __construct($name, $id, $grade, $thesisTitle) {
+        parent::__construct($name, $id, $grade);
+        $this->thesisTitle = $thesisTitle;
+    }
+
+    public function getThesisTitle() {
+        return $this->thesisTitle;
+    }
+
+    public function getDescription() {
+        return parent::getDescription() . ", Mon: $this->thesisTitle";
+    }
+}
+
+// Ví dụ sử dụng các lớp đã tạo
+
+$undergradStudent = new UndergraduateStudent("Hai Anh", "PI00277", "WD19301", "WEB2014"); 
+$gradStudent = new GraduateStudent("Hong Linh", "PI00609", "WD19301", "WEB2014");
+
+echo $undergradStudent->getDescription() . "\n";
+echo $gradStudent->getDescription() . "\n";
+
+?>
 
